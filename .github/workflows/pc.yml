@@ -7,7 +7,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: '3.12' }
-      - run: pip install av pillow numpy pyvirtualcam pyinstaller
+      - run: pip install pillow numpy pyvirtualcam customtkinter pyinstaller
       - name: adb indir
         shell: pwsh
         run: |
@@ -15,7 +15,7 @@ jobs:
           Expand-Archive pt.zip -DestinationPath .
       - name: exe derle
         shell: pwsh
-        run: pyinstaller --noconfirm --onefile --windowed --name CamLink --collect-all av --collect-all pyvirtualcam --add-binary "platform-tools/adb.exe;platform-tools" --add-binary "platform-tools/AdbWinApi.dll;platform-tools" --add-binary "platform-tools/AdbWinUsbApi.dll;platform-tools" pc/camlink_pc.py
+        run: pyinstaller --noconfirm --onefile --windowed --name CamLink --collect-all customtkinter --collect-all pyvirtualcam --add-binary "platform-tools/adb.exe;platform-tools" --add-binary "platform-tools/AdbWinApi.dll;platform-tools" --add-binary "platform-tools/AdbWinUsbApi.dll;platform-tools" pc/camlink_pc.py
       - uses: actions/upload-artifact@v4
         with:
           name: CamLink-PC
